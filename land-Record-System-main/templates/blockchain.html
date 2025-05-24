@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockchain Viewer</title>
+    <style>
+        /* Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: #131314;
+            text-align: center;
+            font-size: 36px;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+
+        /* Table Container */
+        .table-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            overflow-x: auto; /* Enables horizontal scrolling if needed */
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 1000px; /* Prevents table from shrinking */
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 16px;
+            text-align: center;
+            white-space: nowrap; /* Prevents text wrapping */
+        }
+
+        th {
+            background-color: #434446;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        tr:hover {
+            background-color: #d1e7fd;
+            transition: background 0.3s ease-in-out;
+        }
+
+        td {
+            border-bottom: 1px solid #ddd;
+            color: #333;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .table-container {
+                width: 100%;
+                padding: 10px;
+            }
+
+            table {
+                min-width: 1000px;
+            }
+
+            .table-container {
+                overflow-x: auto; /* Enables horizontal scrolling */
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Blockchain Viewer</h1>
+    
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Timestamp</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>UID</th>
+                    <th>Land Details</th>
+                    <th>Hash</th>
+                    <th>Previous Hash</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for block in blockchain %}
+                <tr>
+                    <td>{{ block.timestamp }}</td>
+                    <td>{{ block.name }}</td>
+                    <td>{{ block.age }}</td>
+                    <td>{{ block.uid }}</td>
+                    <td>{{ block.land }}</td>
+                    <td>{{ block.hash }}</td>
+                    <td>{{ block.previous_hash if block.previous_hash else 'N/A' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
